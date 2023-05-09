@@ -12,6 +12,7 @@ namespace ASA_IP
         public static List<Location> ReadData(string fileName)
         {
             List<Location> locations = new List<Location>();
+
             string[] lines = File.ReadAllLines(fileName);
             foreach (string line in lines)
             {
@@ -25,6 +26,7 @@ namespace ASA_IP
                 Location location = new Location(name, id, X, Y);
                 locations.Add(location);
             }
+
             return locations;
         }
     }
