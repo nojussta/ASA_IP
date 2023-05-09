@@ -10,6 +10,8 @@ namespace ASA_IP
     {
         static void Main(string[] args)
         {
+            string fileName = "Duomenys.txt";
+            InOutUtils.ReadData(fileName);
         }
     }
 }
