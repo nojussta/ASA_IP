@@ -12,6 +12,7 @@ namespace ASA_IP
         {
             string fileName = "Duomenys.csv";
             List<Location> locations = InOutUtils.ReadData(fileName);
+
             //Console.WriteLine(RoutePlanner.FindRoute(locations));
             var routes = RoutePlanner.GetPermutations(locations, locations.Count);
 

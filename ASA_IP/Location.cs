@@ -25,6 +25,7 @@ namespace ASA_IP
         {
             double dx = X - other.X;
             double dy = Y - other.Y;
+
             return Math.Sqrt(dx * dx + dy * dy);
         }
     }
