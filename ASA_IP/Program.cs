@@ -15,7 +15,7 @@ namespace ASA_IP
         static void Main(string[] args)
         {
             // Nuskaitome duomenis iš failo ir sudedame juos į LocationContainer objektą
-            LocationContainer Locations = ReadLocationsFromFile("Duomenys.csv");
+            LocationContainer Locations = InOutUtils.ReadData("Duomenys.csv");
 
             // Konfigūruojame genetinio algoritmo parametrus
             int populationSize = 100;

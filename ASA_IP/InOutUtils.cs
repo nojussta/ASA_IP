@@ -9,9 +9,9 @@ namespace ASA_IP
 {
     internal class InOutUtils
     {
-        public static List<Location> ReadData(string fileName)
+        public static LocationContainer ReadData(string fileName)
         {
-            List<Location> locations = new List<Location>();
+            LocationContainer locations = new LocationContainer();
 
             string[] lines = File.ReadAllLines(fileName);
             foreach (string line in lines)
@@ -22,9 +22,7 @@ namespace ASA_IP
                 long id = long.Parse(Values[1]);
                 double X = double.Parse(Values[2]);
                 double Y = double.Parse(Values[3]);
-
-                Location location = new Location(id, name, X, Y);
-                locations.Add(location);
+                locations.AddLocation(id, name, X, Y);
             }
 
             return locations;
