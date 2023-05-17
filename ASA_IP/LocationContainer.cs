@@ -8,7 +8,7 @@ namespace ASA_IP
 {
     internal class LocationContainer
     {
-        private List<Location> allLocations;
+        private readonly List<Location> allLocations;
 
         public LocationContainer()
         {
