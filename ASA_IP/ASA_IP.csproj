@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GenethicAlgorithm.cs" />
     <Compile Include="InOutUtils.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="LocationContainer.cs" />
