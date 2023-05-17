@@ -23,7 +23,7 @@ namespace ASA_IP
                 double X = double.Parse(Values[2]);
                 double Y = double.Parse(Values[3]);
 
-                Location location = new Location(name, id, X, Y);
+                Location location = new Location(id, name, X, Y);
                 locations.Add(location);
             }
 
