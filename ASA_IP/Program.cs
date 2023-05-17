@@ -79,7 +79,7 @@ namespace ASA_IP
 
             Console.WriteLine("\n");
 
-            // Spausdiname geriausią rastą kelionės maršrutą pirmajam keliautojui
+            // Spausdiname geriausią rastą kelionės maršrutą trečiajam keliautojui
             Console.WriteLine("Trečiasis keliautojas:");
             Console.WriteLine("");
             Route thirdShortestRoute = thirdRoutes[0];
@@ -92,7 +92,7 @@ namespace ASA_IP
             Console.WriteLine("Viso atstumas: {0}", thirdShortestRoute.GetTotalDistance());
 
             Console.WriteLine("");
-            Console.WriteLine("Bendras užtruktas laikas:");
+            Console.WriteLine("Laikas per kurį apdoroti duomenys:");
             Console.WriteLine(sw.Elapsed);
 
             DrawGraph(firstShortestRoute, secondShortestRoute, thirdShortestRoute);
@@ -143,7 +143,6 @@ namespace ASA_IP
             plt.AxisAuto(0.1, 0.1);
             plt.Frame(false);
 
-            // Save the plot as an image file
             plt.SaveFig("Genetinis.png", 1200, 800, false, 5);
         }
     }
