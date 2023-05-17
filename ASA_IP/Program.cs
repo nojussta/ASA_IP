@@ -144,26 +144,7 @@ namespace ASA_IP
             plt.Frame(false);
 
             // Save the plot as an image file
-            plt.SaveFig("grafas_genetinis.png", 1200, 800, false, 5);
-        }
-
-
-        public static LocationContainer ReadLocationsFromFile(string fileName)
-        {
-            LocationContainer allLocations = new LocationContainer();
-
-            string[] Lines = File.ReadAllLines(fileName, Encoding.UTF8);
-
-            for (int i = 0; i < Lines.Length; i++)
-            {
-                string[] Values = Lines[i].Split(new string[] { ";" }, StringSplitOptions.None);
-                string name = Values[0];
-                long id = long.Parse(Values[1]);
-                double x = double.Parse(Values[2]);
-                double y = double.Parse(Values[3]);
-                allLocations.AddLocation(id, name, x, y);
-            }
-            return allLocations;
+            plt.SaveFig("Genetinis.png", 1200, 800, false, 5);
         }
     }
 }

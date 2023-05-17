@@ -16,7 +16,7 @@ namespace ASA_IP
             string[] lines = File.ReadAllLines(fileName);
             foreach (string line in lines)
             {
-                string[] Values = line.Split(',');
+                string[] Values = line.Split(';');
 
                 string name = Values[0];
                 long id = long.Parse(Values[1]);
