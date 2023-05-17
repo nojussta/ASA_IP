@@ -11,6 +11,7 @@ namespace ASA_IP
 {
     class Program
     {
+        [Obsolete]
         static void Main(string[] args)
         {
             // Nuskaitome duomenis iš failo ir sudedame juos į LocationContainer objektą
@@ -96,7 +97,7 @@ namespace ASA_IP
 
             DrawGraph(firstShortestRoute, secondShortestRoute, thirdShortestRoute);
         }
-
+        [Obsolete]
         public static void DrawGraph(Route firstRoute, Route secondRoute, Route thirdRoute)
         {
             int n1 = firstRoute.VisitedLocations.Count;

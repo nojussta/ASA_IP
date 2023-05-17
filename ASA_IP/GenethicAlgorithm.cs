@@ -81,13 +81,11 @@ namespace ASA_IP
         {
             List<Route> newPopulation = new List<Route>();
 
-            // Selekcija (iš kiekvienos poros pasirenkame geriausius)
             for (int i = 0; i < tournamentSize / 2; i++)
             {
                 Route parent1 = TournamentSelection(population, tournamentSize);
                 Route parent2 = TournamentSelection(population, tournamentSize);
 
-                // Kryžminimas (generuojame vaikus iš dviejų tėvų)
                 Route children = Crossover(parent1, parent2);
 
                 Mutate(children);
@@ -120,8 +118,10 @@ namespace ASA_IP
             int point = 1;
             if (parent1.VisitedLocations.Count - 1 > 1) point = parent1.VisitedLocations.Count - 1;
             int crossoverPoint = new Random().Next(1, point);
-            Route child = new Route();
-            child.VisitedLocations = parent1.VisitedLocations.Take(crossoverPoint).ToList();
+            Route child = new Route
+            {
+                VisitedLocations = parent1.VisitedLocations.Take(crossoverPoint).ToList()
+            };
             for (int i = 0; i < parent2.VisitedLocations.Count; i++)
             {
                 Location currentGene = parent2.VisitedLocations[i];
@@ -152,9 +152,7 @@ namespace ASA_IP
         {
             while (startIndex < endIndex)
             {
-                Location temp = route.VisitedLocations[startIndex];
-                route.VisitedLocations[startIndex] = route.VisitedLocations[endIndex];
-                route.VisitedLocations[endIndex] = temp;
+                (route.VisitedLocations[endIndex], route.VisitedLocations[startIndex]) = (route.VisitedLocations[startIndex], route.VisitedLocations[endIndex]);
                 startIndex++;
                 endIndex--;
             }
