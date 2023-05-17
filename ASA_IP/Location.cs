@@ -8,25 +8,22 @@ namespace ASA_IP
 {
     internal class Location
     {
-        public string Name { get; set; }
         public long Id { get; set; }
+        public string Name { get; set; }
         public double X { get; set; }
         public double Y { get; set; }
 
-        public Location(string name, long id, double x, double y)
+        public Location(long id, string name, double x, double y)
         {
-            Name = name;
             Id = id;
+            Name = name;
             X = x;
             Y = y;
         }
 
         public double DistanceTo(Location other)
         {
-            double dx = X - other.X;
-            double dy = Y - other.Y;
-
-            return Math.Sqrt(dx * dx + dy * dy);
+            return Math.Sqrt(Math.Pow(X - other.X, 2) + Math.Pow(Y - other.Y, 2));
         }
     }
 }
