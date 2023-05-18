@@ -33,9 +33,9 @@ namespace ASA_IP
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
 
-                List<Location> sp1 = First_OptimalAlgorithm.TSP_Implement(distances, 0, set1, locations);
-                List<Location> sp2 = First_OptimalAlgorithm.TSP_Implement(distances, 0, set2, locations);
-                List<Location> sp3 = First_OptimalAlgorithm.TSP_Implement(distances, 0, set3, locations);
+                List<Location> sp1 = First_OptimalAlgorithm.TSP_Implement(distances, 0, set1);
+                List<Location> sp2 = First_OptimalAlgorithm.TSP_Implement(distances, 0, set2);
+                List<Location> sp3 = First_OptimalAlgorithm.TSP_Implement(distances, 0, set3);
 
                 stopwatch.Stop();
                 Application.Run(new FS_FormGraph(sp1));

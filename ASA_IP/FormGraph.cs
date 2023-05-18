@@ -5,6 +5,7 @@ using System.Drawing;
 
 namespace ASA_IP
 {
+    [Obsolete]
     static internal class FormGraph
     {
         public static void DrawGraph(Route firstRoute, Route secondRoute, Route thirdRoute)

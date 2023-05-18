@@ -10,9 +10,12 @@ namespace ASA_IP
 {
     internal class FS_FormGraph : Form
     {
-        private List<Location> path;
-        private double minX, maxX, minY, maxY;
-        private const int Padding = 50;
+        private readonly List<Location> path;
+        private readonly double minX;
+        private readonly double maxX;
+        private readonly double minY;
+        private readonly double maxY;
+        private new const int Padding = 50;
 
         public FS_FormGraph(List<Location> path)
         {

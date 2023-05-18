@@ -9,7 +9,7 @@ namespace ASA_IP
     public static class First_OptimalAlgorithm
     {
 
-        public static List<Location> TSP_Implement(double[,] adjMatrix, int start, List<Location> locations, List<Location> original)
+        public static List<Location> TSP_Implement(double[,] adjMatrix, int start, List<Location> locations)
         {
             int V = locations.Count;
             var cities = new List<int>();
