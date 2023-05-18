@@ -8,7 +8,7 @@ namespace ASA_IP
 {
     public class Second_LocalAlgorithm
     {
-        public static List<Location> GreedyTSP(double[,] adjMatrix, int start, List<Location> locations, List<Location> original)
+        public static List<Location> GreedyTSP(double[,] adjMatrix, int start, List<Location> locations)
         {
             int n = locations.Count;
             bool[] visited = new bool[n];

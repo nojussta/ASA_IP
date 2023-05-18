@@ -36,20 +36,39 @@ namespace ASA_IP
 
             {//===========================================================================PIRMA UŽDUOTIS===========================================================================
                 Console.WriteLine("--Pirmas--");
-                Stopwatch stopwatch = new Stopwatch();
-                stopwatch.Start();
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
 
                 List<Location> sp1 = First_OptimalAlgorithm.TSP_Implement(distances, 0, set1);
                 List<Location> sp2 = First_OptimalAlgorithm.TSP_Implement(distances, 0, set2);
                 List<Location> sp3 = First_OptimalAlgorithm.TSP_Implement(distances, 0, set3);
 
-                stopwatch.Stop();
+                sw.Stop();
                 Application.Run(new FS_FormGraph(sp1));
                 Application.Run(new FS_FormGraph(sp2));
                 Application.Run(new FS_FormGraph(sp3));
 
-                Console.WriteLine("Elapsed Time: {0} ms", stopwatch.Elapsed);
+                Console.WriteLine("Elapsed Time: {0} ms", sw.Elapsed);
+                sw.Reset();
             }//===========================================================================PIRMA UŽDUOTIS===========================================================================
+
+            {//===========================================================================ANTRA UŽDUOTIS===========================================================================
+                Console.WriteLine();
+                Console.WriteLine("--Antras--");
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                List<Location> sp1 = Second_LocalAlgorithm.GreedyTSP(distances, 0, set1);
+                List<Location> sp2 = Second_LocalAlgorithm.GreedyTSP(distances, 0, set2);
+                List<Location> sp3 = Second_LocalAlgorithm.GreedyTSP(distances, 0, set3);
+
+                sw.Stop();
+                Application.Run(new FS_FormGraph(sp1));
+                Application.Run(new FS_FormGraph(sp2));
+                Application.Run(new FS_FormGraph(sp3));
+                long elapsedMilliseconds = sw.Elapsed.Milliseconds;
+                Console.WriteLine("Elapsed Time: {0} ms", elapsedMilliseconds);
+                sw.Reset();
+            }//===========================================================================ANTRA UŽDUOTIS===========================================================================
 
             {//===========================================================================TREČIA UŽDUOTIS===========================================================================
                 // Nuskaitome duomenis iš failo ir sudedame juos į LocationContainer objektą
