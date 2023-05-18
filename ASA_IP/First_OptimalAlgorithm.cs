@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace ASA_IP
 {
@@ -8,15 +9,7 @@ namespace ASA_IP
         public static List<Location> TSP_Implement(double[,] adjMatrix, int start, List<Location> locations)
         {
             int V = locations.Count;
-            var cities = new List<int>();
-            for (int i = 0; i < V; i++)
-            {
-                if (i != start)
-                {
-                    cities.Add(i);
-                }
-            }
-
+            var cities = Enumerable.Range(0, V).Where(i => i != start).ToList();
             double minDistance = double.MaxValue;
             List<Location> shortestPath = null;
 
@@ -24,18 +17,17 @@ namespace ASA_IP
             {
                 double currDistance = 0;
                 int k = start;
-
                 var path = new List<Location> { locations[start] };
 
-                for (int i = 0; i < cities.Count; i++)
+                foreach (int i in cities)
                 {
-                    currDistance += adjMatrix[k, cities[i]];
-                    k = cities[i];
-                    path.Add(locations[cities[i]]);
+                    currDistance += adjMatrix[k, i];
+                    k = i;
+                    path.Add(locations[i]);
                 }
 
                 currDistance += adjMatrix[k, start];
-                path.Add(locations[start]); // Add the starting location to the end of the path
+                path.Add(locations[start]);
 
                 if (currDistance < minDistance)
                 {
@@ -46,6 +38,7 @@ namespace ASA_IP
 
             return shortestPath;
         }
+
 
         private static bool NextPermutation(List<int> cities)
         {
