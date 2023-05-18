@@ -83,5 +83,22 @@ namespace ASA_IP
         {
             return Math.Sqrt(Math.Pow(l2.X - l1.X, 2) + Math.Pow(l2.Y - l1.Y, 2));
         }
+
+        static internal double[,] CalculateDistances(List<Location> places)
+        {
+            var distances = new double[places.Count, places.Count];
+
+            for (int i = 0; i < places.Count; i++)
+            {
+                for (int j = i + 1; j < places.Count; j++)
+                {
+                    var distance = FindDistance(places[i], places[j]);
+                    distances[i, j] = distance;
+                    distances[j, i] = distance;
+                }
+            }
+
+            return distances;
+        }
     }
 }

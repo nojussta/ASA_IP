@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ASA_IP
 {
-    public class First_OptimalAlgorithm
+    public static class First_OptimalAlgorithm
     {
 
         public static List<Location> TSP_Implement(double[,] adjMatrix, int start, List<Location> locations, List<Location> original)
