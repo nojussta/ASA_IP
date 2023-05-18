@@ -12,9 +12,11 @@ namespace ASA_IP
         [Obsolete]
         static void Main(string[] args)
         {
+
             // Nuskaitome duomenis iš failo ir sudedame juos į LocationContainer objektą
             LocationContainer Locations = InOutUtils.ReadData("Duomenys.csv");
 
+            //===========================================================================TREČIA UŽDUOTIS===========================================================================
             // Konfigūruojame genetinio algoritmo parametrus
             int populationSize = 100;
             int maxGenerations = 1000;
@@ -30,7 +32,7 @@ namespace ASA_IP
             {
                 firstLocations.AddLocation(allLocations[i]);
             }
-            List<Route> firstRoutes = GenethicAlgorithm.FindShortestRoutes(firstLocations, populationSize, maxGenerations);
+            List<Route> firstRoutes = Third_GenethicAlgorithm.FindShortestRoutes(firstLocations, populationSize, maxGenerations);
 
             //Antras keliautojas
             LocationContainer secondLocations = new LocationContainer();
@@ -38,7 +40,7 @@ namespace ASA_IP
             {
                 secondLocations.AddLocation(allLocations[i]);
             }
-            List<Route> secondRoutes = GenethicAlgorithm.FindShortestRoutes(secondLocations, populationSize, maxGenerations);
+            List<Route> secondRoutes = Third_GenethicAlgorithm.FindShortestRoutes(secondLocations, populationSize, maxGenerations);
 
             // Trečias keliautojas
             LocationContainer thirdLocations = new LocationContainer();
@@ -46,7 +48,7 @@ namespace ASA_IP
             {
                 thirdLocations.AddLocation(allLocations[i]);
             }
-            List<Route> thirdRoutes = GenethicAlgorithm.FindShortestRoutes(thirdLocations, populationSize, maxGenerations);
+            List<Route> thirdRoutes = Third_GenethicAlgorithm.FindShortestRoutes(thirdLocations, populationSize, maxGenerations);
             sw.Stop();
 
             // Spausdiname geriausią rastą kelionės maršrutą pirmajam keliautojui
@@ -94,6 +96,7 @@ namespace ASA_IP
             Console.WriteLine(sw.Elapsed);
 
             FormGraph.DrawGraph(firstShortestRoute, secondShortestRoute, thirdShortestRoute);
+            //===========================================================================TREČIA UŽDUOTIS===========================================================================
         }
     }
 }
