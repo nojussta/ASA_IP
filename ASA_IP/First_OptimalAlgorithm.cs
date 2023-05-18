@@ -6,7 +6,7 @@ namespace ASA_IP
     public static class First_OptimalAlgorithm
     {
 
-        public static List<Location> TSP_Implement(double[,] adjMatrix, int start, List<Location> locations)
+        public static List<Location> First_Optimal(double[,] adjMatrix, int start, List<Location> locations)
         {
             int V = locations.Count;
             var cities = Enumerable.Range(0, V).Where(i => i != start).ToList();

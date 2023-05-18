@@ -124,9 +124,9 @@ namespace ASA_IP
 
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
-                List<Location> sp1 = First_OptimalAlgorithm.TSP_Implement(distances, 0, set1);
-                List<Location> sp2 = First_OptimalAlgorithm.TSP_Implement(distances, 0, set2);
-                List<Location> sp3 = First_OptimalAlgorithm.TSP_Implement(distances, 0, set3);
+                List<Location> sp1 = First_OptimalAlgorithm.First_Optimal(distances, 0, set1);
+                List<Location> sp2 = First_OptimalAlgorithm.First_Optimal(distances, 0, set2);
+                List<Location> sp3 = First_OptimalAlgorithm.First_Optimal(distances, 0, set3);
                 sw.Stop();
                 Console.WriteLine(String.Format($"Laikas per kurį apdoroti duomenys: {sw.Elapsed}"));
 
