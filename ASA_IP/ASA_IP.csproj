@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="First_OptimalAlgorithm.cs" />
     <Compile Include="FormGraph.cs" />
     <Compile Include="FS_FormGraph.cs">
       <SubType>Form</SubType>
