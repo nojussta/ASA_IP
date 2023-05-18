@@ -82,6 +82,9 @@
     <None Include="Duomenys_10sec.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Duomenys_lokalus.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Duomenys_60sec.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
