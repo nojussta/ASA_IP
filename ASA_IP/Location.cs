@@ -25,5 +25,16 @@ namespace ASA_IP
         {
             return Math.Sqrt(Math.Pow(X - other.X, 2) + Math.Pow(Y - other.Y, 2));
         }
+
+        public static Location CreateLocation(string line)
+        {
+            var values = line.Split(';');
+            string name = values[0];
+            long id = long.Parse(values[1]);
+            var x = double.Parse(values[2]);
+            var y = double.Parse(values[3]);
+
+            return new Location(id, name, x, y);
+        }
     }
 }
