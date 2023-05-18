@@ -27,5 +27,25 @@ namespace ASA_IP
 
             return locations;
         }
+
+        public static List<Location> ReadLocationsFromFile(string path)
+        {
+            var locations = new List<Location>();
+
+            using (var reader = new StreamReader(path))
+            {
+
+                // read each line and create a Location object
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var location = Location.CreateLocation(line);
+                    locations.Add(location);
+                }
+            }
+
+            return locations;
+        }
     }
+
 }
