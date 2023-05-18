@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ASA_IP
 {
-    internal static class GenethicAlgorithm
+    internal static class Third_GenethicAlgorithm
     {
         private static readonly Random random = new Random();
 
