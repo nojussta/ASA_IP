@@ -16,6 +16,7 @@ namespace ASA_IP
         {
             var data_10 = "Duomenys_10sec.csv";
             var data_60 = "Duomenys_60sec.csv";
+            var data_local = "Duomenys_lokalus.csv";
 
             var locations = InOutUtils.ReadLocationsFromFile(data_10);
             double[,] distances = FS_FormGraph.CalculateDistances(locations);
@@ -82,18 +83,44 @@ namespace ASA_IP
             sw.Stop();
 
             // Spausdiname geriausią rastą kelionės maršrutą pirmajam keliautojui
-            var firstShortestRoute = Third_Task(firstRoutes, "Pirmasis pirklys");
+            var firstShortestRoute = Third_Task(firstRoutes, "Pirmasis keliautojas");
 
             // Spausdiname geriausią rastą kelionės maršrutą antrajam keliautojui
-            var secondShortestRoute = Third_Task(secondRoutes, "Antrasis pirklys");
+            var secondShortestRoute = Third_Task(secondRoutes, "Antrasis keliautojas");
 
             // Spausdiname geriausią rastą kelionės maršrutą trečiajam keliautojui
-            var thirdShortestRoute = Third_Task(thirdRoutes, "Trečiasis pirklys");
+            var thirdShortestRoute = Third_Task(thirdRoutes, "Trečiasis keliautojas");
 
             Console.WriteLine(String.Format($"Laikas per kurį apdoroti duomenys: {sw.Elapsed}"));
 
             FormGraph.DrawGraph(firstShortestRoute, secondShortestRoute, thirdShortestRoute);
         }
+
+        public static double[,] GenData(string data)
+        {
+            var locations = InOutUtils.ReadLocationsFromFile(data);
+            double[,] distances = FS_FormGraph.CalculateDistances(locations);
+            int n = locations.Count;
+
+            List<Location> set1 = new List<Location>();
+            List<Location> set2 = new List<Location>();
+            List<Location> set3 = new List<Location>();
+
+            for (int i = 0; i < n; i++)
+            {
+                if (i < n / 3)
+                {
+                    set1.Add(locations[i]);
+                }
+                else if (i >= n / 3 && i < 2 * n / 3)
+                {
+                    set2.Add(locations[i]);
+                }
+                else set3.Add(locations[i]);
+            }
+            return distances;
+        }
+
         public static void FS_Tasks(double[,] distances, List<Location> set1, List<Location> set2, List<Location> set3, string taskCheck)
         {
             if (taskCheck == "Optimalus")
