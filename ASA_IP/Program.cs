@@ -1,10 +1,6 @@
-﻿using ScottPlot.Palettes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace ASA_IP
@@ -16,7 +12,6 @@ namespace ASA_IP
         {
             var data_10 = "Duomenys_10sec.csv";
             var data_60 = "Duomenys_60sec.csv";
-            var data_local = "Duomenys_lokalus.csv";
 
             var locations = InOutUtils.ReadLocationsFromFile(data_10);
             double[,] distances = FS_FormGraph.CalculateDistances(locations);
