@@ -8,8 +8,10 @@ namespace ASA_IP
         {
             int n = locations.Count;
             bool[] visited = new bool[n];
-            List<Location> path = new List<Location>();
-            path.Add(locations[start]);
+            List<Location> path = new List<Location>
+            {
+                locations[start]
+            };
             visited[start] = true;
 
             while (path.Count < n)
