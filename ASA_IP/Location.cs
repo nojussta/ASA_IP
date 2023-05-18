@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ASA_IP
 {
-    internal class Location
+    public class Location
     {
         public long Id { get; set; }
         public string Name { get; set; }

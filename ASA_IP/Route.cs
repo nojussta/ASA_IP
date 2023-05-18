@@ -27,6 +27,11 @@ namespace ASA_IP
             return totalDistance;
         }
 
+        public Location GetLocation(int index)
+        {
+            return VisitedLocations[index];
+        }
+
         public bool ContainsLocation(Location Location)
         {
             return VisitedLocations.Any(p => p.Id == Location.Id);
