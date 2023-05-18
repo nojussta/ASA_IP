@@ -5,40 +5,38 @@ namespace ASA_IP
 {
     public static class First_OptimalAlgorithm
     {
-
         public static List<Location> First_Optimal(double[,] adjMatrix, int start, List<Location> locations)
         {
-            int V = locations.Count;
-            var cities = Enumerable.Range(0, V).Where(i => i != start).ToList();
-            double minDistance = double.MaxValue;
-            List<Location> shortestPath = null;
+            int V = locations.Count; // c | 1
+            var cities = Enumerable.Range(0, V).Where(i => i != start).ToList(); // c | n-1
+            double minDistance = double.MaxValue; // c | 1
+            List<Location> shortestPath = null; // c | 1
 
-            do
+            do // c | (n-1)!
             {
-                double currDistance = 0;
-                int k = start;
-                var path = new List<Location> { locations[start] };
+                double currDistance = 0; // c | (n-1)!
+                int k = start; // c | (n-1)!
+                var path = new List<Location> { locations[start] }; // c | (n-1)!
 
-                foreach (int i in cities)
+                foreach (int i in cities) // c | (n-1)
                 {
-                    currDistance += adjMatrix[k, i];
-                    k = i;
-                    path.Add(locations[i]);
+                    currDistance += adjMatrix[k, i]; // c | (n-1)
+                    k = i; // c | (n-1)
+                    path.Add(locations[i]); // c | (n-1)
                 }
 
-                currDistance += adjMatrix[k, start];
-                path.Add(locations[start]);
+                currDistance += adjMatrix[k, start]; // c | (n-1)!
+                path.Add(locations[start]); // c | (n-1)!
 
-                if (currDistance < minDistance)
+                if (currDistance < minDistance) // c | (n-1)!
                 {
-                    minDistance = currDistance;
-                    shortestPath = path;
+                    minDistance = currDistance; // c | (n-1)!
+                    shortestPath = path; // c | (n-1)!
                 }
-            } while (NextPermutation(cities));
+            } while (NextPermutation(cities)); // c | (n-1)!
 
-            return shortestPath;
+            return shortestPath; // c | 1
         }
-
 
         private static bool NextPermutation(List<int> cities)
         {
