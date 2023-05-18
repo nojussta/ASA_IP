@@ -14,8 +14,9 @@ namespace ASA_IP
         [Obsolete]
         static void Main(string[] args)
         {
-            var data = "Duomenys.csv";
-            var locations = InOutUtils.ReadLocationsFromFile(data);
+            var data_10 = "Duomenys_10sec.csv";
+            var data_60 = "Duomenys_60sec.csv";
+            var locations = InOutUtils.ReadLocationsFromFile(data_10);
             double[,] distances = FS_FormGraph.CalculateDistances(locations);
             int n = locations.Count;
             List<Location> set1 = new List<Location>();
@@ -34,45 +35,49 @@ namespace ASA_IP
                 else set3.Add(locations[i]);
             }
 
+            FS_Tasks(distances, set1, set2, set3, "Optimalus");
+            FS_Tasks(distances, set1, set2, set3, "Lokalus");
+
             {//===========================================================================PIRMA UŽDUOTIS===========================================================================
-                Console.WriteLine("Optimalus");
+                //FirstTask(distances, set1, set2, set3);
+                //Console.WriteLine("Optimalus");
 
-                Stopwatch sw = new Stopwatch();
-                sw.Start();
-                List<Location> sp1 = First_OptimalAlgorithm.TSP_Implement(distances, 0, set1);
-                List<Location> sp2 = First_OptimalAlgorithm.TSP_Implement(distances, 0, set2);
-                List<Location> sp3 = First_OptimalAlgorithm.TSP_Implement(distances, 0, set3);
-                sw.Stop();
+                //Stopwatch sw = new Stopwatch();
+                //sw.Start();
+                //List<Location> sp1 = First_OptimalAlgorithm.TSP_Implement(distances, 0, set1);
+                //List<Location> sp2 = First_OptimalAlgorithm.TSP_Implement(distances, 0, set2);
+                //List<Location> sp3 = First_OptimalAlgorithm.TSP_Implement(distances, 0, set3);
+                //sw.Stop();
 
-                Application.Run(new FS_FormGraph(sp1));
-                Application.Run(new FS_FormGraph(sp2));
-                Application.Run(new FS_FormGraph(sp3));
+                //Application.Run(new FS_FormGraph(sp1));
+                //Application.Run(new FS_FormGraph(sp2));
+                //Application.Run(new FS_FormGraph(sp3));
 
-                Console.WriteLine(String.Format($"Laikas per kurį apdoroti duomenys: {sw.Elapsed}"));
-                sw.Reset();
+                //Console.WriteLine(String.Format($"Laikas per kurį apdoroti duomenys: {sw.Elapsed}"));
+                //sw.Reset();
             }//===========================================================================PIRMA UŽDUOTIS===========================================================================
 
             {//===========================================================================ANTRA UŽDUOTIS===========================================================================
-                Console.WriteLine(String.Format("\nLokalus"));
+                //Console.WriteLine(String.Format("\nLokalus"));
 
-                Stopwatch sw = new Stopwatch();
-                sw.Start();
-                List<Location> sp1 = Second_LocalAlgorithm.GreedyTSP(distances, 0, set1);
-                List<Location> sp2 = Second_LocalAlgorithm.GreedyTSP(distances, 0, set2);
-                List<Location> sp3 = Second_LocalAlgorithm.GreedyTSP(distances, 0, set3);
-                sw.Stop();
+                //Stopwatch sw = new Stopwatch();
+                //sw.Start();
+                //List<Location> sp1 = Second_LocalAlgorithm.GreedyTSP(distances, 0, set1);
+                //List<Location> sp2 = Second_LocalAlgorithm.GreedyTSP(distances, 0, set2);
+                //List<Location> sp3 = Second_LocalAlgorithm.GreedyTSP(distances, 0, set3);
+                //sw.Stop();
 
-                Application.Run(new FS_FormGraph(sp1));
-                Application.Run(new FS_FormGraph(sp2));
-                Application.Run(new FS_FormGraph(sp3));
+                //Application.Run(new FS_FormGraph(sp1));
+                //Application.Run(new FS_FormGraph(sp2));
+                //Application.Run(new FS_FormGraph(sp3));
 
-                Console.WriteLine(String.Format($"Laikas per kurį apdoroti duomenys: {sw.Elapsed}"));
-                sw.Reset();
+                //Console.WriteLine(String.Format($"Laikas per kurį apdoroti duomenys: {sw.Elapsed}"));
+                //sw.Reset();
             }//===========================================================================ANTRA UŽDUOTIS===========================================================================
 
             {//===========================================================================TREČIA UŽDUOTIS===========================================================================
                 // Nuskaitome duomenis iš failo ir sudedame juos į LocationContainer objektą
-                LocationContainer Locations = InOutUtils.ReadData(data);
+                LocationContainer Locations = InOutUtils.ReadData(data_60);
 
                 // Konfigūruojame genetinio algoritmo parametrus
                 int populationSize = 100;
@@ -153,6 +158,47 @@ namespace ASA_IP
 
                 FormGraph.DrawGraph(firstShortestRoute, secondShortestRoute, thirdShortestRoute);
             }//===========================================================================TREČIA UŽDUOTIS===========================================================================
+        }
+        public static void FS_Tasks(double[,] distances, List<Location> set1, List<Location> set2, List<Location> set3, string taskCheck)
+        {
+            if (taskCheck == "Optimalus")
+            {
+                Console.WriteLine("Optimalus");
+
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                List<Location> sp1 = First_OptimalAlgorithm.TSP_Implement(distances, 0, set1);
+                List<Location> sp2 = First_OptimalAlgorithm.TSP_Implement(distances, 0, set2);
+                List<Location> sp3 = First_OptimalAlgorithm.TSP_Implement(distances, 0, set3);
+                sw.Stop();
+                Console.WriteLine(String.Format($"Laikas per kurį apdoroti duomenys: {sw.Elapsed}"));
+
+                Application.Run(new FS_FormGraph(sp1));
+                Application.Run(new FS_FormGraph(sp2));
+                Application.Run(new FS_FormGraph(sp3));
+
+                //Console.WriteLine(String.Format($"Laikas per kurį apdoroti duomenys: {sw.Elapsed}"));
+                sw.Reset();
+            }
+            else
+            {
+                Console.WriteLine(String.Format("\nLokalus"));
+
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
+                List<Location> sp1 = Second_LocalAlgorithm.GreedyTSP(distances, 0, set1);
+                List<Location> sp2 = Second_LocalAlgorithm.GreedyTSP(distances, 0, set2);
+                List<Location> sp3 = Second_LocalAlgorithm.GreedyTSP(distances, 0, set3);
+                sw.Stop();
+                Console.WriteLine(String.Format($"Laikas per kurį apdoroti duomenys: {sw.Elapsed}"));
+
+                Application.Run(new FS_FormGraph(sp1));
+                Application.Run(new FS_FormGraph(sp2));
+                Application.Run(new FS_FormGraph(sp3));
+
+                //Console.WriteLine(String.Format($"Laikas per kurį apdoroti duomenys: {sw.Elapsed}"));
+                sw.Reset();
+            }
         }
     }
 }
