@@ -1,9 +1,5 @@
-﻿using System;
-using System.IO;
+﻿using System.IO;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ASA_IP
 {
@@ -34,8 +30,6 @@ namespace ASA_IP
 
             using (var reader = new StreamReader(path))
             {
-
-                // read each line and create a Location object
                 while (!reader.EndOfStream)
                 {
                     var line = reader.ReadLine();
