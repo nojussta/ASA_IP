@@ -35,7 +35,7 @@ namespace ASA_IP
             }
 
             {//===========================================================================PIRMA UŽDUOTIS===========================================================================
-                Console.WriteLine("--Pirmas--");
+                Console.WriteLine("Optimalus");
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
 
@@ -54,19 +54,19 @@ namespace ASA_IP
 
             {//===========================================================================ANTRA UŽDUOTIS===========================================================================
                 Console.WriteLine();
-                Console.WriteLine("--Antras--");
+                Console.WriteLine("Lokalus");
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
                 List<Location> sp1 = Second_LocalAlgorithm.GreedyTSP(distances, 0, set1);
                 List<Location> sp2 = Second_LocalAlgorithm.GreedyTSP(distances, 0, set2);
                 List<Location> sp3 = Second_LocalAlgorithm.GreedyTSP(distances, 0, set3);
-
                 sw.Stop();
+
                 Application.Run(new FS_FormGraph(sp1));
                 Application.Run(new FS_FormGraph(sp2));
                 Application.Run(new FS_FormGraph(sp3));
-                long elapsedMilliseconds = sw.Elapsed.Milliseconds;
-                Console.WriteLine("Elapsed Time: {0} ms", elapsedMilliseconds);
+
+                Console.WriteLine("Elapsed Time: {0} ms", sw.Elapsed);
                 sw.Reset();
             }//===========================================================================ANTRA UŽDUOTIS===========================================================================
 
