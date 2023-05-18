@@ -14,8 +14,8 @@ namespace ASA_IP
         [Obsolete]
         static void Main(string[] args)
         {
-            var path = "Duomenys.csv";
-            var locations = InOutUtils.ReadLocationsFromFile(path);
+            var data = "Duomenys.csv";
+            var locations = InOutUtils.ReadLocationsFromFile(data);
             double[,] distances = FS_FormGraph.CalculateDistances(locations);
             int n = locations.Count;
             List<Location> set1 = new List<Location>();
@@ -47,7 +47,7 @@ namespace ASA_IP
 
             {//===========================================================================TREČIA UŽDUOTIS===========================================================================
                 // Nuskaitome duomenis iš failo ir sudedame juos į LocationContainer objektą
-                LocationContainer Locations = InOutUtils.ReadData("Duomenys.csv");
+                LocationContainer Locations = InOutUtils.ReadData(data);
 
                 // Konfigūruojame genetinio algoritmo parametrus
                 int populationSize = 100;

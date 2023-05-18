@@ -76,9 +76,7 @@ namespace ASA_IP
         }
         private static void Swap(List<int> cities, int i, int j)
         {
-            int temp = cities[i];
-            cities[i] = cities[j];
-            cities[j] = temp;
+            (cities[j], cities[i]) = (cities[i], cities[j]);
         }
 
         private static void Reverse(List<int> cities, int start, int end)
