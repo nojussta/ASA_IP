@@ -23,9 +23,15 @@ namespace ASA_IP
             List<Location> set3 = new List<Location>();
             for (int i = 0; i < n; i++)
             {
-                if (i < n / 3) { set1.Add(locations[i]); }
-                else if (i >= n / 3 && i < 2 * n / 3) { set2.Add(locations[i]); }
-                else { set3.Add(locations[i]); }
+                if (i < n / 3)
+                {
+                    set1.Add(locations[i]);
+                }
+                else if (i >= n / 3 && i < 2 * n / 3)
+                {
+                    set2.Add(locations[i]);
+                }
+                else set3.Add(locations[i]);
             }
 
             {//===========================================================================PIRMA UŽDUOTIS===========================================================================
