@@ -143,9 +143,9 @@ namespace ASA_IP
 
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
-                List<Location> sp1 = Second_LocalAlgorithm.GreedyTSP(distances, 0, set1);
-                List<Location> sp2 = Second_LocalAlgorithm.GreedyTSP(distances, 0, set2);
-                List<Location> sp3 = Second_LocalAlgorithm.GreedyTSP(distances, 0, set3);
+                List<Location> sp1 = Second_LocalAlgorithm.Second_Local(distances, 0, set1);
+                List<Location> sp2 = Second_LocalAlgorithm.Second_Local(distances, 0, set2);
+                List<Location> sp3 = Second_LocalAlgorithm.Second_Local(distances, 0, set3);
                 sw.Stop();
                 Console.WriteLine(String.Format($"Laikas per kurį apdoroti duomenys: {sw.Elapsed}"));
 
