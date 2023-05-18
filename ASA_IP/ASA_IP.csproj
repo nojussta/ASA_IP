@@ -68,6 +68,7 @@
     <Compile Include="FS_FormGraph.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Second_LocalAlgorithm.cs" />
     <Compile Include="Third_GenethicAlgorithm.cs" />
     <Compile Include="InOutUtils.cs" />
     <Compile Include="Location.cs" />
