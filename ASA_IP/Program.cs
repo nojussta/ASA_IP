@@ -36,25 +36,25 @@ namespace ASA_IP
 
             {//===========================================================================PIRMA UŽDUOTIS===========================================================================
                 Console.WriteLine("Optimalus");
+
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
-
                 List<Location> sp1 = First_OptimalAlgorithm.TSP_Implement(distances, 0, set1);
                 List<Location> sp2 = First_OptimalAlgorithm.TSP_Implement(distances, 0, set2);
                 List<Location> sp3 = First_OptimalAlgorithm.TSP_Implement(distances, 0, set3);
-
                 sw.Stop();
+
                 Application.Run(new FS_FormGraph(sp1));
                 Application.Run(new FS_FormGraph(sp2));
                 Application.Run(new FS_FormGraph(sp3));
 
-                Console.WriteLine("Elapsed Time: {0} ms", sw.Elapsed);
+                Console.WriteLine(String.Format($"Laikas per kurį apdoroti duomenys: {sw.Elapsed}"));
                 sw.Reset();
             }//===========================================================================PIRMA UŽDUOTIS===========================================================================
 
             {//===========================================================================ANTRA UŽDUOTIS===========================================================================
-                Console.WriteLine();
-                Console.WriteLine("Lokalus");
+                Console.WriteLine(String.Format("\nLokalus"));
+
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
                 List<Location> sp1 = Second_LocalAlgorithm.GreedyTSP(distances, 0, set1);
@@ -66,7 +66,7 @@ namespace ASA_IP
                 Application.Run(new FS_FormGraph(sp2));
                 Application.Run(new FS_FormGraph(sp3));
 
-                Console.WriteLine("Elapsed Time: {0} ms", sw.Elapsed);
+                Console.WriteLine(String.Format($"Laikas per kurį apdoroti duomenys: {sw.Elapsed}"));
                 sw.Reset();
             }//===========================================================================ANTRA UŽDUOTIS===========================================================================
 
@@ -149,8 +149,7 @@ namespace ASA_IP
                 Console.WriteLine("Viso atstumas: {0}", thirdShortestRoute.GetTotalDistance());
 
                 Console.WriteLine("");
-                Console.WriteLine("Laikas per kurį apdoroti duomenys:");
-                Console.WriteLine(sw.Elapsed);
+                Console.WriteLine(String.Format($"Laikas per kurį apdoroti duomenys: {sw.Elapsed}"));
 
                 FormGraph.DrawGraph(firstShortestRoute, secondShortestRoute, thirdShortestRoute);
             }//===========================================================================TREČIA UŽDUOTIS===========================================================================
