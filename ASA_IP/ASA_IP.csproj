@@ -79,6 +79,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Duomenys_graph.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Duomenys_10sec.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
