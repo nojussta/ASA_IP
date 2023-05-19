@@ -44,7 +44,7 @@ namespace ASA_IP
             double yScale = (ClientSize.Height - 2 * Padding) / (maxY - minY);
 
             // Set up the pen for drawing the path
-            using (Pen pen = new Pen(Color.Red, 2))
+            using (Pen pen = new Pen(Color.MediumPurple, 4))
             {
                 // Draw the path
                 for (int i = 0; i < path.Count - 1; i++)
