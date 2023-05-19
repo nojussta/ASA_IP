@@ -14,147 +14,134 @@ namespace ASA_IP
             List<Route> population = CreatePopulation(LocationContainer, populationSize);
 
             // Vykdomos pagrindinės genetinio algoritmo iteracijos
-            for (int generation = 1; generation <= maxGenerations; generation++)
             {
-                EvaluatePopulation(population);
+                EvaluatePopulation(population);   // c | populationSize
 
                 population = CreateNewPopulation(population, populationSize);   // c | populationSize
                 // perskirstymą, kryžminimą, mutaciją ir selekciją)
-                population = CreateNewPopulation(population, populationSize);
             }
 
             // Atliekame galutininę populiacijos vertinimą ir grąžiname kandidatus su mažiausia kelionės kaina
-            EvaluatePopulation(population);
-            return population.OrderBy(r => r.GetTotalDistance()).ToList();
+            return population.OrderBy(r => r.GetTotalDistance()).ToList();   // c | populationSize * log(populationSize)
         }
 
         private static List<Route> CreatePopulation(LocationContainer LocationContainer, int populationSize)
         {
-            List<Route> population = new List<Route>();
-            List<Location> tempLocations = LocationContainer.GetAllLocations();
+            List<Route> population = new List<Route>();   // c | 1
+            List<Location> tempLocations = LocationContainer.GetAllLocations();   // c | 1
 
             // Sukuriame pradinę populiaciją
-            for (int i = 0; i < populationSize; i++)
             {
-                Route route = new Route();
+                Route route = new Route();   // c | 1
 
                 // Sukuriame naują maršrutą pridėdami vietas iš kolekcijos atsitiktine tvarka
-                List<Location> allLocations = new List<Location>();
 
-                for (int j = 0; j < tempLocations.Count; j++)
+                while (allLocations.Count > 0)   // c | populationSize
                 {
-                    allLocations.Add(tempLocations[j]);
-                }
-                while (allLocations.Count > 0)
-                {
-                    int index = random.Next(0, allLocations.Count);
-                    Location Location = allLocations[index];
-                    allLocations.RemoveAt(index);
+                    int index = random.Next(0, allLocations.Count);   // c | populationSize
+                    Location Location = allLocations[index];   // c | populationSize
+                    allLocations.RemoveAt(index);   // c | populationSize
 
-                    route.AddLocation(Location);
+                    route.AddLocation(Location);   // c | populationSize
                 }
 
                 // Užbaigiame maršrutą pridedant pirmą vietą
-                Location firstLocation = route.VisitedLocations.FirstOrDefault();
-                route.AddLocation(firstLocation);
+                route.AddLocation(firstLocation);   // c | 1
 
-                population.Add(route);
+                population.Add(route);   // c | populationSize
             }
 
-            return population;
+            return population;   // c | 1
         }
 
         private static void EvaluatePopulation(List<Route> population)
         {
-            foreach (Route route in population)
+            foreach (Route route in population)   // c | populationSize
             {
-                double totalDistance = route.GetTotalDistance();
+                double totalDistance = route.GetTotalDistance();   // c | 1
 
                 // Nustatome atitinkamą kandidato kokybės vertę
-                route.Quality = 1 / totalDistance;
             }
         }
 
         private static List<Route> CreateNewPopulation(List<Route> population, int tournamentSize)
         {
-            List<Route> newPopulation = new List<Route>();
+            List<Route> newPopulation = new List<Route>();   // c | 1
 
-            for (int i = 0; i < tournamentSize / 2; i++)
+            for (int i = 0; i < tournamentSize / 2; i++)   // c | tournamentSize
             {
-                Route parent1 = TournamentSelection(population, tournamentSize);
-                Route parent2 = TournamentSelection(population, tournamentSize);
+                Route parent1 = TournamentSelection(population, tournamentSize);   // c | tournamentSize
+                Route parent2 = TournamentSelection(population, tournamentSize);   // c | tournamentSize
 
-                Route children = Crossover(parent1, parent2);
+                Route children = Crossover(parent1, parent2);   // c | 1
 
-                Mutate(children);
+                Mutate(children);   // c | 1
 
-                newPopulation.Add(children);
+                newPopulation.Add(children);   // c | 1
             }
 
-            return newPopulation;
+            return newPopulation;   // c | 1
         }
 
         private static Route TournamentSelection(List<Route> population, int tournamentSize)
         {
-            List<Route> tournamentParticipants = new List<Route>();
+            List<Route> tournamentParticipants = new List<Route>();   // c | 1
 
             // Randomly select individuals for the tournament
-            for (int i = 0; i < tournamentSize; i++)
             {
-                int randomIndex = random.Next(population.Count);
-                tournamentParticipants.Add(population[randomIndex]);
+                int randomIndex = random.Next(population.Count);   // c | tournamentSize
+                tournamentParticipants.Add(population[randomIndex]);   // c | tournamentSize
             }
 
             // Find the individual with the highest fitness (lowest distance)
-            Route bestIndividual = tournamentParticipants.OrderBy(r => r.GetTotalDistance()).First();
-            return bestIndividual;
+            return bestIndividual;   // c | 1
         }
 
         // Funkcija atlieka kryžminimą (crossover) tarp dviejų maršrutų
         private static Route Crossover(Route parent1, Route parent2)
         {
-            int point = 1;
-            if (parent1.VisitedLocations.Count - 1 > 1) point = parent1.VisitedLocations.Count - 1;
-            int crossoverPoint = new Random().Next(1, point);
-            Route child = new Route
+            int point = 1;   // c | 1
+            if (parent1.VisitedLocations.Count - 1 > 1) point = parent1.VisitedLocations.Count - 1;   // c | 1
+            int crossoverPoint = new Random().Next(1, point);   // c | 1
+            Route child = new Route   // c | 1
             {
-                VisitedLocations = parent1.VisitedLocations.Take(crossoverPoint).ToList()
+                VisitedLocations = parent1.VisitedLocations.Take(crossoverPoint).ToList()   // c | crossoverPoint
             };
-            for (int i = 0; i < parent2.VisitedLocations.Count; i++)
+            for (int i = 0; i < parent2.VisitedLocations.Count; i++)   // c | parent2.VisitedLocations.Count
             {
-                Location currentGene = parent2.VisitedLocations[i];
-                if (!child.ContainsLocation(currentGene))
+                Location currentGene = parent2.VisitedLocations[i];   // c | parent2.VisitedLocations.Count
+                if (!child.ContainsLocation(currentGene))   // c | parent2.VisitedLocations.Count
                 {
-                    child.AddLocation(currentGene);
+                    child.AddLocation(currentGene);   // c | parent2.VisitedLocations.Count
                 }
             }
-            return child;
+            return child;   // c | 1
         }
 
         private static void Mutate(Route route)
         {
-            double mutationRate = 0.01;
-            Random random = new Random();
+            double mutationRate = 0.01;   // c | 1
+            Random random = new Random();   // c | 1
 
-            for (int i = 1; i < route.VisitedLocations.Count - 1; i++)
+            for (int i = 1; i < route.VisitedLocations.Count - 1; i++)   // c | route.VisitedLocations.Count
             {
-                if (random.NextDouble() < mutationRate)
+                if (random.NextDouble() < mutationRate)   // c | route.VisitedLocations.Count
                 {
-                    int j = random.Next(1, route.VisitedLocations.Count - 1);
-                    InvertSegment(route, i, j);
+                    int j = random.Next(1, route.VisitedLocations.Count - 1);   // c | route.VisitedLocations.Count
+                    InvertSegment(route, i, j);   // c | 1
                 }
             }
         }
 
         private static void InvertSegment(Route route, int startIndex, int endIndex)
         {
-            while (startIndex < endIndex)
+            while (startIndex < endIndex)   // c | (endIndex - startIndex)
             {
-                (route.VisitedLocations[endIndex], route.VisitedLocations[startIndex]) = (route.VisitedLocations[startIndex], route.VisitedLocations[endIndex]);
-                startIndex++;
-                endIndex--;
+                (route.VisitedLocations[endIndex], route.VisitedLocations[startIndex]) = (route.VisitedLocations[startIndex], route.VisitedLocations[endIndex]);   // c | (endIndex - startIndex)
+                startIndex++;   // c | (endIndex - startIndex)
+                endIndex--;   // c | (endIndex - startIndex)
             }
         }
-
     }
+
 }
