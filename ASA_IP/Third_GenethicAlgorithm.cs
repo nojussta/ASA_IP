@@ -17,8 +17,10 @@ namespace ASA_IP
             {
                 EvaluatePopulation(population);   // c | populationSize
 
-                population = CreateNewPopulation(population, populationSize);   // c | populationSize
+
+                // Ruošiamas populiacijos naujas kartas (sudarome naują populiaciją naudodami 
                 // perskirstymą, kryžminimą, mutaciją ir selekciją)
+                population = CreateNewPopulation(population, populationSize);   // c | populationSize
             }
 
             // Atliekame galutininę populiacijos vertinimą ir grąžiname kandidatus su mažiausia kelionės kaina
