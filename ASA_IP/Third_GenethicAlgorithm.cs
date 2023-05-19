@@ -35,6 +35,7 @@ namespace ASA_IP
                 Route route = new Route();   // c | 1
 
                 // Sukuriame naują maršrutą pridėdami vietas iš kolekcijos atsitiktine tvarka
+                List<Location> allLocations = new List<Location>(tempLocations);   // c | 1
 
                 while (allLocations.Count > 0)   // c | populationSize
                 {
@@ -46,6 +47,7 @@ namespace ASA_IP
                 }
 
                 // Užbaigiame maršrutą pridedant pirmą vietą
+                Location firstLocation = route.VisitedLocations.FirstOrDefault();   // c | 1
                 route.AddLocation(firstLocation);   // c | 1
 
                 population.Add(route);   // c | populationSize
@@ -94,6 +96,7 @@ namespace ASA_IP
             }
 
             // Find the individual with the highest fitness (lowest distance)
+            Route bestIndividual = tournamentParticipants.OrderBy(r => r.GetTotalDistance()).First();   // c | tournamentSize * log(tournamentSize)
             return bestIndividual;   // c | 1
         }
 
